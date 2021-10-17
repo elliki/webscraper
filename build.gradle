@@ -1,0 +1,37 @@
+plugins {
+    id 'application'
+}
+
+application {
+    mainClass = 'io.github.elli.App'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.vaadin.external.jsoup:jsoup-case-sensitive:1.9.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    implementation 'org.jsoup:jsoup:1.14.3'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.2'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.0'
+    implementation 'jakarta.xml.bind:jakarta.xml.bind-api:3.0.1'
+    implementation 'org.glassfish.jaxb:jaxb-runtime:3.0.1'
+    implementation 'org.slf4j:slf4j-api:1.7.32'
+    implementation 'org.slf4j:slf4j-simple:1.7.32'
+    implementation 'javax.xml.bind:jaxb-api:2.4.0-b180830.0359'
+    implementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
+    implementation 'io.github.bonigarcia:webdrivermanager:5.0.3'
+    implementation 'org.webjars.npm:selenium-webdriver:2.53.3'
+
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
