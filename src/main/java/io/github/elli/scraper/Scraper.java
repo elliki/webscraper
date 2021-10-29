@@ -7,10 +7,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.*;
@@ -18,10 +18,11 @@ import java.util.stream.Collectors;
 
 
 public class Scraper {
+
     public static final Logger LOGGER = LoggerFactory.getLogger(Scraper.class);
 
-    private Set<String> linkVisited = new HashSet<>();
-    private WebDriver driver;
+    private final Set<String> linkVisited = new HashSet<>();
+    private final WebDriver driver;
 
     public Scraper() {
         WebDriverManager.chromedriver().setup();
@@ -39,7 +40,7 @@ public class Scraper {
         }
     }
 
-    public void scrapeLinksRecursively(List<String> websiteLinks) throws InterruptedException {
+    public void scrapeLinksRecursively(List<String> websiteLinks) throws InterruptedException, IOException, URISyntaxException {
         if(websiteLinks == null || websiteLinks.isEmpty()) {
             return;
         }
@@ -47,6 +48,7 @@ public class Scraper {
         List<String> zwischenListe = new ArrayList<>();
         for (String link: websiteLinks) {
             driver.get(link);
+            new JsoupValidateContent(link);
             Thread.sleep(50);
             zwischenListe.addAll(driver.findElements(By.tagName("a")).stream()
                     .map(this::extractHref)
@@ -59,7 +61,6 @@ public class Scraper {
                 .filter(Objects::nonNull)
                 .filter(this::isNotExternalLink)
                 .collect(Collectors.toList());
-
         scrapeLinksRecursively(newLinks);
     }
 
@@ -69,7 +70,7 @@ public class Scraper {
 
     private String extractHref(WebElement webElement) {
         try {
-            System.out.println(webElement.getAttribute("href"));
+//            System.out.println(webElement.getAttribute("href"));
             return webElement.getAttribute("href");
         }
         catch (Exception e) {
