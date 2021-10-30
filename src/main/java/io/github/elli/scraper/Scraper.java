@@ -2,6 +2,7 @@ package io.github.elli.scraper;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.github.elli.config.JsonParser;
+import io.github.elli.database.ConfigureMysql;
 import io.github.elli.models.Websites;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -31,8 +32,10 @@ public class Scraper {
 
     public void run(String[] args) throws IOException, URISyntaxException {
         JsonParser parser = new JsonParser();
+//        ConfigureMysql mysql = new ConfigureMysql();
         Websites websites = parser.parse();
         try {
+//            mysql.setShemeName(websites.getWebsites());
             scrapeLinksRecursively(websites.getWebsites());
         } catch (InterruptedException e) {
             LOGGER.error("Thread got interrupted", e);

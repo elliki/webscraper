@@ -1,5 +1,8 @@
 plugins {
     id 'application'
+    id 'org.springframework.boot' version '2.5.6'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
 }
 
 application {
@@ -25,9 +28,18 @@ dependencies {
     implementation 'org.slf4j:slf4j-api:1.7.32'
     implementation 'org.slf4j:slf4j-simple:1.7.32'
     implementation 'javax.xml.bind:jaxb-api:2.4.0-b180830.0359'
-    implementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
+    implementation 'org.seleniumhq.selenium:selenium-java:4.0.0'
     implementation 'io.github.bonigarcia:webdrivermanager:5.0.3'
     implementation 'org.webjars.npm:selenium-webdriver:2.53.3'
+    // jsoup HTML parser library @ https://jsoup.org/
+    implementation 'org.jsoup:jsoup:1.14.3'
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.5.6'
+    // https://mvnrepository.com/artifact/org.springframework/spring-web
+    implementation 'org.springframework:spring-web:5.3.12'
+    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+    implementation 'mysql:mysql-connector-java:8.0.27'
+
 
 }
 

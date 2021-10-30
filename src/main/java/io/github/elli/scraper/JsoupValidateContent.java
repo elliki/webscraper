@@ -1,5 +1,6 @@
 package io.github.elli.scraper;
 
+import io.github.elli.models.WebsiteData;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -12,13 +13,15 @@ import java.util.NoSuchElementException;
 
 public class JsoupValidateContent {
 //    private final File file;
+    WebsiteData n = new WebsiteData();
     public static final Logger LOGGER = LoggerFactory.getLogger(JsoupValidateContent.class);
 
     public JsoupValidateContent(String newLinks) throws IOException {
 //        file = new File("input.html");
 //        BufferedWriter htmlWriterTEST = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8));
         Document doc = Jsoup.connect(newLinks).get();
-//        doc.select(("div[class=\"bg-white\"]").outerHtml());
+//        n.setHeader(doc.select(("div[class=\"bg-white\"]")).outerHtml());
+
 //        if(getContent(doc)) {
 //            try {
 //                htmlWriterTEST.write(doc.select("div[class=\"bg-white\"]").outerHtml());
